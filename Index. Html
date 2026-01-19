@@ -1,0 +1,1438 @@
+using UnityEngine;
+using PhotoEditorSDK; // Example SDK
+using OpenCVForUnity;
+
+public class PhotoEditorManager : MonoBehaviour
+{
+    public Texture2D currentImage;
+
+    public void LoadImage(Texture2D img)
+    {
+        currentImage = img;
+        Debug.Log("Image loaded for editing.");
+    }
+
+    public void ApplyFilter(string filterName)
+    {
+        // Example pseudo-code
+        Debug.Log("Applying filter: " + filterName);
+        // GPUImage / OpenCV apply here
+    }
+
+    public void AddSticker(Texture2D sticker, Vector2 position)
+    {
+        Debug.Log("Sticker added at " + position);
+        // Combine sticker into currentImage
+    }
+
+    public void AddText(string text, Vector2 position)
+    {
+        Debug.Log("Text added: " + text);
+        // Draw text on image
+    }
+
+    public void Crop(int x, int y, int width, int height)
+    {
+        Debug.Log("Cropping image");
+        // Crop logic
+    }
+
+    public void SaveImage(string path)
+    {
+        Debug.Log("Image saved at: " + path);
+    }
+}using UnityEngine;
+using FFmpegKit;
+
+public class VideoEditorManager : MonoBehaviour
+{
+    public string videoPath;
+
+    public void LoadVideo(string path)
+    {
+        videoPath = path;
+        Debug.Log("Video loaded: " + path);
+    }
+
+    public void Trim(float startTime, float duration, string outputPath)
+    {
+        Debug.Log("Trimming video...");
+        string cmd = $"-i {videoPath} -ss {startTime} -t {duration} -c copy {outputPath}";
+        FFmpegKit.Execute(cmd);
+    }
+
+    public void AddFilter(string filter, string outputPath)
+    {
+        Debug.Log("Applying filter: " + filter);
+        string cmd = $"-i {videoPath} -vf {filter} {outputPath}";
+        FFmpegKit.Execute(cmd);
+    }
+
+    public void Export(string outputPath)
+    {
+        Debug.Log("Exporting video...");
+        // Can call FFmpegKit command to save final video
+    }
+}using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+
+public class AR3DManager : MonoBehaviour
+{
+    public ARSessionOrigin arOrigin;
+    public GameObject current3DObject;
+
+    public void Place3DObject(GameObject obj, Vector3 position)
+    {
+        current3DObject = Instantiate(obj, position, Quaternion.identity);
+        Debug.Log("3D Object placed at " + position);
+    }
+
+    public void RecordSession(string savePath)
+    {
+        Debug.Log("Recording AR session to: " + savePath);
+        // Use Unity Recorder / ARKit Recorder
+    }
+}using UnityEngine;
+
+public class SoundManager : MonoBehaviour
+{
+    public AudioSource audioSource;
+
+    public void AddBackgroundMusic(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+        Debug.Log("Background music playing");
+    }
+
+    public void AddSoundEffect(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+        Debug.Log("Sound effect played");
+    }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
+    }
+}using UnityEngine;
+using OpenCVForUnity;
+
+public class BackgroundManager : MonoBehaviour
+{
+    public Texture2D currentImage;
+
+    public void RemoveBackground()
+    {
+        Debug.Log("Removing background using OpenCV / Masking");
+        // Pseudo code: Mask out background
+    }
+
+    public void ReplaceBackground(Texture2D newBg)
+    {
+        Debug.Log("Replacing background");
+        // Merge newBg with foreground
+    }
+}public void GenerateImage(string prompt)
+{
+    Debug.Log("Generating image from text: " + prompt);
+    // Call API like OpenAI DALL·E or Pika API
+    // Receive image byte[]
+    // Convert to Texture2D
+    // Show in UI / save
+}public void GenerateVideo(string prompt)
+{
+    Debug.Log("Generating video from text: " + prompt);
+    // 1. Call AI API (Runway / Pika / Gen-2)
+    // 2. Receive MP4 or frames
+    // 3. Save locally and preview
+}using UnityEngine;
+using UnityEngine.Networking;
+
+public class TTSManager : MonoBehaviour
+{
+    public AudioSource audioSource;
+
+    public void GenerateSpeech(string text)
+    {
+        Debug.Log("Generating speech for: " + text);
+        // Example: Call TTS API
+        // Receive audio clip / byte[]
+        // Play via audioSource
+    }
+}Assets/
+ └── Scripts/
+     ├── PhotoEditorManager.cs
+     ├── VideoEditorManager.cs
+     ├── AR3DManager.cs
+     ├── SoundManager.cs
+     └── BackgroundManager.cspublic void SpeakText(string text)
+{
+    var tts = new AndroidJavaClass("android.speech.tts.TextToSpeech");
+    tts.Call("speak", text, 1, null, null);
+}Assets/
+ └── Scripts/
+     ├── PhotoEditorManager.cs
+     ├── VideoEditorManager.cs
+     ├── AR3DManager.cs
+     ├── SoundManager.cs
+     └── BackgroundManager.csHanuman ji birthday
+public void SpeakText(string text)
+{
+    var tts = new AndroidJavaClass("android.speech.tts.TextToSpeech");
+    tts.Call("speak", text, 1, null, null);
+}// Pseudo-code
+public void GenerateAIVoice(string text)
+{
+    // Call ElevenLabs / OpenAI API
+    // Receive audio clip
+    audioSource.clip = clip; 
+    audioSource.Play();
+}public void GenerateAIImage(string prompt)
+{
+    // Call API with prompt
+    // Receive PNG / JPEG
+    // Display in ImageViewer / PhotoEditorManager
+}public void GenerateAIVideo(string prompt)
+{
+    // Call Runway ML / Pika API
+    // Download MP4
+    // Play or edit in VideoEditorManager
+}using UnityEngine;
+
+public class PhotoEditorManager : MonoBehaviour
+{
+    public Texture2D currentImage;
+
+    public void LoadImage(Texture2D img)
+    {
+        currentImage = img;
+    }
+
+    public void ApplyFilter(string filter)
+    {
+        Debug.Log("Filter applied: " + filter);
+    }
+
+    public void AddSticker(Texture2D sticker)
+    {
+        Debug.Log("Sticker added");
+    }
+
+    public void AddText(string text)
+    {
+        Debug.Log("Text added: " + text);
+    }
+}using UnityEngine;
+
+public class VideoEditorManager : MonoBehaviour
+{
+    public void ExportVideo()
+    {
+        Debug.Log("Video exported (simulate FFmpegKit)");
+    }
+}using UnityEngine;
+
+public class SoundManager : MonoBehaviour
+{
+    public AudioSource audioSource;
+
+    public void PlayClip(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
+    public void SpeakText(string text)
+    {
+        Debug.Log("TTS speaking: " + text);
+    }
+}using UnityEngine;
+
+public class AR3DManager : MonoBehaviour
+{
+    public GameObject PlaceObject(GameObject prefab, Vector3 position)
+    {
+        return Instantiate(prefab, position, Quaternion.identity);
+    }
+}using UnityEngine;
+
+public class BackgroundManager : MonoBehaviour
+{
+    public void RemoveBackground(Texture2D img)
+    {
+        Debug.Log("Background removed");
+    }
+
+    public void ReplaceBackground(Texture2D newBg)
+    {
+        Debug.Log("Background replaced");
+    }
+}using UnityEngine;
+
+public class AIImageManager : MonoBehaviour
+{
+    public void GenerateImageFromText(string prompt)
+    {
+        Debug.Log("Generate AI image: " + prompt);
+    }
+}using UnityEngine;
+
+public class AIVideoManager : MonoBehaviour
+{
+    public void GenerateVideoFromText(string prompt)
+    {
+        Debug.Log("Generate AI video: " + prompt);
+    }
+}using UnityEngine;
+
+public class AIVoiceManager : MonoBehaviour
+{
+    public void GenerateVoiceFromText(string text)
+    {
+        Debug.Log("Generate AI voice: " + text);
+    }
+}using UnityEngine;
+using System.Collections;
+using UnityEngine.Networking;
+
+public class AIImageManager : MonoBehaviour
+{
+    public Renderer displayRenderer;
+
+    public void GenerateImageFromText(string prompt)
+    {
+        StartCoroutine(GenerateImageCoroutine(prompt));
+    }
+
+    IEnumerator GenerateImageCoroutine(string prompt)
+    {
+        string apiKey = "YOUR_OPENAI_API_KEY";
+        string url = "https://api.openai.com/v1/images/generations";
+
+        string jsonData = "{\"prompt\":\"" + prompt + "\",\"n\":1,\"size\":\"512x512\"}";
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer " + apiKey);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string jsonResult = request.downloadHandler.text;
+            // parse image URL from JSON
+            string imageUrl = /* extract URL from jsonResult */;
+            StartCoroutine(LoadTexture(imageUrl));
+        }
+        else
+        {
+            Debug.Log("Error: " + request.error);
+        }
+    }
+
+    IEnumerator LoadTexture(string url)
+    {
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
+        yield return www.SendWebRequest();
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            Texture2D tex = DownloadHandlerTexture.GetContent(www);
+            displayRenderer.material.mainTexture = tex;
+        }
+    }
+}using UnityEngine;
+using System.Collections;
+using UnityEngine.Networking;
+
+public class AIVoiceManager : MonoBehaviour
+{
+    public AudioSource audioSource;
+
+    public void GenerateVoiceFromText(string text)
+    {
+        StartCoroutine(GenerateVoiceCoroutine(text));
+    }
+
+    IEnumerator GenerateVoiceCoroutine(string text)
+    {
+        string apiKey = "YOUR_ELEVENLABS_API_KEY";
+        string url = "https://api.elevenlabs.io/v1/text-to-speech";
+
+        string jsonData = "{\"text\":\"" + text + "\",\"voice\":\"alloy\"}";
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("xi-api-key", apiKey);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            byte[] audioBytes = request.downloadHandler.data;
+            AudioClip clip = WavUtility.ToAudioClip(audioBytes, "AI_Voice");
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+    }
+}using UnityEngine;
+using System.Collections;
+using UnityEngine.Networking;
+
+public class AIVideoManager : MonoBehaviour
+{
+    public void GenerateVideoFromText(string prompt)
+    {
+        StartCoroutine(GenerateVideoCoroutine(prompt));
+    }
+
+    IEnumerator GenerateVideoCoroutine(string prompt)
+    {
+        string apiKey = "YOUR_API_KEY";
+        string url = "https://api.runwayml.com/v1/video-gen";
+
+        string jsonData = "{\"prompt\":\"" + prompt + "\",\"length\":5}";
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer " + apiKey);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string videoUrl = /* parse URL from request.downloadHandler.text */;
+            Debug.Log("Video ready: " + videoUrl);
+            // Download and play using VideoPlayer component
+        }
+    }
+}3DMajer/
+ ├── frontend/
+ │    ├── public/
+ │    ├── src/
+ │    │    ├── components/
+ │    │    │    ├── ImageGenerator.js
+ │    │    │    ├── VideoGenerator.js
+ │    │    │    ├── VoiceGenerator.js
+ │    │    │    ├── PhotoEditor.js
+ │    │    │    ├── AR3DViewer.js
+ │    │    │    ├── Dashboard.js
+ │    │    │    └── CoinShop.js
+ │    │    ├── App.js
+ │    │    ├── index.js
+ │    │    └── styles.css
+ │    └── package.json
+ └── backend/
+      ├── server.js
+      ├── routes/
+      │    ├── image.js
+      │    ├── video.js
+      │    ├── voice.js
+      │    └── user.js
+      └── package.jsonimport React, { useState } from "react";
+
+export default function ImageGenerator() {
+  const [prompt, setPrompt] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  const generateImage = async () => {
+    const res = await fetch("http://localhost:5000/api/image", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+    const data = await res.json();
+    setImageUrl(data.url);
+  };
+
+  return (
+    <div>
+      <h2>Text → AI Image</h2>
+      <input
+        type="text"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        placeholder="Enter text prompt"
+      />
+      <button onClick={generateImage}>Generate</button>
+      {imageUrl && <img src={imageUrl} alt="AI Generated" />}
+    </div>
+  );
+}import React, { useState } from "react";
+
+export default function VideoGenerator() {
+  const [prompt, setPrompt] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
+
+  const generateVideo = async () => {
+    const res = await fetch("http://localhost:5000/api/video", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+    const data = await res.json();
+    setVideoUrl(data.url);
+  };
+
+  return (
+    <div>
+      <h2>Text → AI Video</h2>
+      <input
+        type="text"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        placeholder="Enter text prompt"
+      />
+      <button onClick={generateVideo}>Generate Video</button>
+      {videoUrl && (
+        <video controls width="400">
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+      )}
+    </div>
+  );
+}import React, { useState } from "react";
+
+export default function VoiceGenerator() {
+  const [text, setText] = useState("");
+  const [audioUrl, setAudioUrl] = useState("");
+
+  const generateVoice = async () => {
+    const res = await fetch("http://localhost:5000/api/voice", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+    const data = await res.json();
+    setAudioUrl(data.url);
+  };
+
+  return (
+    <div>
+      <h2>Text → AI Voice</h2>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter text to speak"
+      />
+      <button onClick={generateVoice}>Generate Voice</button>
+      {audioUrl && <audio controls src={audioUrl}></audio>}
+    </div>
+  );
+}const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
+const imageRouter = require("./routes/image");
+const videoRouter = require("./routes/video");
+const voiceRouter = require("./routes/voice");
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use("/api/image", imageRouter);
+app.use("/api/video", videoRouter);
+app.use("/api/voice", voiceRouter);
+
+app.listen(5000, () => {
+  console.log("Server running on http://localhost:5000");
+});const express = require("express");
+const router = express.Router();
+
+router.post("/", async (req, res) => {
+  const { prompt } = req.body;
+
+  // Example: call OpenAI / DALL·E API here
+  const imageUrl = "https://via.placeholder.com/512"; // temporary
+
+  res.json({ url: imageUrl });
+});
+
+module.exports = router;const express = require("express");
+const router = express.Router();
+
+router.post("/", async (req, res) => {
+  const { prompt } = req.body;
+
+  // Example: call Pika / Runway API
+  const videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4"; // temporary
+
+  res.json({ url: videoUrl });
+});
+
+module.exports = router;const express = require("express");
+const router = express.Router();
+
+router.post("/", async (req, res) => {
+  const { text } = req.body;
+
+  // Example: call ElevenLabs API
+  const audioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // temporary
+
+  res.json({ url: audioUrl });
+});
+
+module.exports = router;cd backend
+npm install express cors body-parser
+node server.jscd frontend
+npm install
+npm startimport React, { useState, useEffect } from "react";
+
+export default function Dashboard() {
+  const [coins, setCoins] = useState(0);
+  const [firstTime, setFirstTime] = useState(true);
+
+  useEffect(() => {
+    // First time bonus
+    if (firstTime) {
+      setCoins(1000);
+      setFirstTime(false);
+    }
+  }, [firstTime]);
+
+  // Cost logic
+  const COST = {
+    video: 29,
+    image: 20,
+    voice: 60,
+  };
+
+  const handleGenerate = async (type) => {
+    let totalCost = 0;
+    if (type === "videoVoice") totalCost = COST.video + COST.voice; // combined generation
+    else totalCost = COST[type];
+
+    if (coins >= totalCost) {
+      setCoins(coins - totalCost);
+
+      // Call API for generation
+      console.log(`${type} generated. Coins deducted: ${totalCost}`);
+      alert(`${type} generated. Coins left: ${coins - totalCost}`);
+    } else {
+      alert(
+        `Not enough coins! Please recharge. 200₹ = 1000 coins available.`
+      );
+    }
+  };
+
+  const handleRecharge = () => {
+    setCoins(coins + 1000);
+    alert("Recharge successful! 1000 coins added.");
+  };
+
+  return (
+    <div>
+      <h2>3D Majer Dashboard</h2>
+      <p>Coins: {coins}</p>
+
+      <button onClick={() => handleGenerate("image")}>Generate Image (-20)</button>
+      <button onClick={() => handleGenerate("videoVoice")}>Generate Video + Voice (-89)</button>
+      <button onClick={() => handleGenerate("voice")}>Generate Voice (-60)</button>
+
+      <button onClick={handleRecharge}>Recharge 200₹ = 1000 Coins</button>
+    </div>
+  );
+}const express = require("express");
+const router = express.Router();
+
+// Temporary user coins storage (replace with DB)
+let userCoins = 1000;
+
+router.post("/generate", (req, res) => {
+  const { type } = req.body;
+  let cost = 0;
+
+  if (type === "image") cost = 20;
+  else if (type === "voice") cost = 60;
+  else if (type === "videoVoice") cost = 29 + 60; // video+voice combined
+
+  if (userCoins >= cost) {
+    userCoins -= cost;
+    res.json({ success: true, coinsLeft: userCoins });
+  } else {
+    res.json({ success: false, message: "Not enough coins!" });
+  }
+});
+
+router.post("/recharge", (req, res) => {
+  // 200₹ = 1000 coins
+  userCoins += 1000;
+  res.json({ success: true, coinsLeft: userCoins });
+});
+
+module.exports = router;import React, { useState } from "react";
+
+export default function Login({ setUser }) {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleLogin = () => {
+    if (!email && !phone) {
+      alert("Enter Email or Phone number to login");
+      return;
+    }
+
+    // Generate unique ID for this user
+    const userId = "user_" + Date.now();
+
+    // First time coins
+    const coins = 1000;
+
+    // Store user info in localStorage (for demo)
+    const userData = { userId, email, phone, coins };
+    localStorage.setItem("3DMajerUser", JSON.stringify(userData));
+
+    setUser(userData);
+    alert(`Welcome! You received 1000 coins first time login`);
+  };
+
+  return (
+    <div>
+      <h2>3D Majer Login</h2>
+      <input
+        type="email"
+        placeholder="Enter Gmail"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <br />
+      <input
+        type="text"
+        placeholder="Enter Phone Number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
+      <br />
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  );
+}import React, { useState, useEffect } from "react";
+
+export default function Dashboard() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("3DMajerUser");
+    if (storedUser) setUser(JSON.parse(storedUser));
+  }, []);
+
+  if (!user) return <p>Please login first.</p>;
+
+  const deductCoins = (cost) => {
+    if (user.coins >= cost) {
+      const newCoins = user.coins - cost;
+      const updatedUser = { ...user, coins: newCoins };
+      setUser(updatedUser);
+      localStorage.setItem("3DMajerUser", JSON.stringify(updatedUser));
+      alert(`Coins deducted: ${cost}, remaining: ${newCoins}`);
+      return true;
+    } else {
+      alert("Not enough coins! Recharge 200₹ = 1000 coins");
+      return false;
+    }
+  };
+
+  const handleGenerateImage = () => deductCoins(20);
+  const handleGenerateVideoVoice = () => deductCoins(29 + 60);
+  const handleGenerateVoice = () => deductCoins(60);
+  const handleRecharge = () => deductCoins(-1000); // add coins
+  
+
+  return (
+    <div>
+      <h2>Welcome {user.email || user.phone}</h2>
+      <p>Coins: {user.coins}</p>
+
+      <button onClick={handleGenerateImage}>Generate Image (-20)</button>
+      <button onClick={handleGenerateVideoVoice}>Generate Video + Voice (-89)</button>
+      <button onClick={handleGenerateVoice}>Generate Voice (-60)</button>
+      <button
+        onClick={() => {
+          const newCoins = user.coins + 1000;
+          const updatedUser = { ...user, coins: newCoins };
+          setUser(updatedUser);
+          localStorage.setItem("3DMajerUser", JSON.stringify(updatedUser));
+          alert("Recharge successful! 1000 coins added.");
+        }}
+      >
+        Recharge 200₹ = 1000 Coins
+      </button>
+    </div>
+  );
+}import React, { useState } from "react";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+
+function App() {
+  const [user, setUser] = useState(null);
+
+  return (
+    <div className="App">
+      {!user ? <Login setUser={setUser} /> : <Dashboard />}
+    </div>
+  );
+}
+
+export default App;3DMajer/
+ ├── frontend/
+ │    ├── public/
+ │    ├── src/
+ │    │    ├── components/
+ │    │    │    ├── Login.js
+ │    │    │    ├── Dashboard.js
+ │    │    │    ├── ImageGenerator.js
+ │    │    │    ├── VideoGenerator.js
+ │    │    │    ├── VoiceGenerator.js
+ │    │    ├── App.js
+ │    │    ├── index.js
+ │    │    └── styles.css
+ │    └── package.json
+ └── backend/
+      ├── server.js
+      ├── routes/
+      │    ├── image.js
+      │    ├── video.js
+      │    ├── voice.js
+      │    └── user.js
+      └── package.jsoncd frontend
+npm install
+npm startcd backend
+npm install express
+node server.js// FREE MODE – Image
+router.post("/image/free", (req, res) => {
+  res.json({
+    url: "https://via.placeholder.com/512x512.png?text=FREE+AI+IMAGE"
+  });
+});router.post("/video/free", (req, res) => {
+  res.json({
+    url: "https://www.w3schools.com/html/mov_bbb.mp4"
+  });
+});router.post("/voice/free", (req, res) => {
+  res.json({
+    url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  });
+});router.post("/image/pro", async (req, res) => {
+  const { prompt } = req.body;
+
+  const response = await fetch("https://api.openai.com/v1/images/generations", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.OPENAI_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      prompt,
+      size: "512x512"
+    })
+  });
+
+  const data = await response.json();
+  res.json({ url: data.data[0].url });
+});router.post("/voice/pro", async (req, res) => {
+  const response = await fetch(
+    "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL",
+    {
+      method: "POST",
+      headers: {
+        "xi-api-key": process.env.ELEVENLABS_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text: req.body.text
+      })
+    }
+  );
+
+  const buffer = await response.arrayBuffer();
+  res.send(Buffer.from(buffer));
+});router.post("/voice/pro", async (req, res) => {
+  const response = await fetch(
+    "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL",
+    {
+      method: "POST",
+      headers: {
+        "xi-api-key": process.env.ELEVENLABS_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text: req.body.text
+      })
+    }
+  );
+
+  const buffer = await response.arrayBuffer();
+  res.send(Buffer.from(buffer));
+});router.post("/video/pro", async (req, res) => {
+  // Pika / Runway async job
+  res.json({
+    status: "processing",
+    message: "Video will be ready in 30-60 seconds"
+  });
+});<select onChange={(e)=>setMode(e.target.value)}>
+  <option value="free">FREE MODE</option>
+  <option value="pro">PRO MODE</option>
+</select>fetch(`/api/image/${mode}`, {...})3DMajer/
+ ├─ index.html        (UI)
+ ├─ style.css         (Design)
+ ├─ app.js            (Logic)
+ ├─ auth.js           (Login)
+ ├─ coins.js          (Coin system)
+ ├─ ai.js             (AI calls)
+ ├─ payment.js        (₹ payment)
+ ├─ admin.html        (Admin panel)
+ └─ manifest.json     (Install as app)if(!userLoggedIn){
+  window.location = "login.html";
+}coins = 1000;function useCoins(cost){
+ if(coins >= cost){
+   coins -= cost;
+ } else {
+   alert("Coins khatam! Recharge karo");
+ }
+}if(paymentSuccess){
+ coins += 1000;
+}generateImage(prompt)
+generateVideo(prompt)
+generateVoice(text)if(user.role === "admin"){
+ showAdminPanel();
+}success@razorpayfunction useCoins(cost){
+ if(coins >= cost){
+   coins -= cost;
+ } else {
+   alert("Coins khatam! Recharge karo");
+ }
+}function buyCoins() {
+  var options = {
+    key: "YOUR_KEY_ID",
+    amount: 20000, // ₹200 = 20000 paise
+    currency: "INR",
+    name: "3D Majer",
+    description: "1000 Coins Pack",
+    handler: function (response) {
+      addCoins(1000);
+      alert("Payment Success! Coins added 🎉");
+    },
+    prefill: {
+      email: userEmail,
+      contact: userPhone
+    },
+    theme: {
+      color: "#00ffcc"
+    }
+  };
+
+  var rzp = new Razorpay(options);
+  rzp.open();
+}function addCoins(amount){
+  coins += amount;
+  localStorage.setItem("coins", coins);
+  updateCoinUI();
+}success@razorpayusers/
+ └─ userId
+    ├─ coins: 1000
+    ├─ email
+    ├─ role: user/admin
+    ├─ createdAtexports.verifyPayment = functions.https.onCall((data, context) => {
+  const userId = context.auth.uid;
+
+  return admin.firestore().collection("users")
+    .doc(userId)
+    .update({
+      coins: admin.firestore.FieldValue.increment(1000)
+    });
+});const packs = {
+  starter: { price: 99, coins: 500 },
+  pro: { price: 200, coins: 1000 },
+  ultra: { price: 499, coins: 3000 }
+};
+
+function buyPack(pack){
+  startPayment(packs[pack].price, packs[pack].coins);
+}<input id="uid" placeholder="User ID">
+<input id="coins" placeholder="Coins">
+<button onclick="addCoins()">Add Coins</button>function addCoins(){
+  const uid = document.getElementById("uid").value;
+  const coins = Number(document.getElementById("coins").value);
+
+  db.collection("users").doc(uid).update({
+    coins: firebase.firestore.FieldValue.increment(coins)
+  });
+}if(user.role !== "admin"){
+  blockAccess();
+}import React, { useState } from "react";
+
+export default function ImageVideoGenerator({ user, setUser }) {
+  const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const generate = async () => {
+    if(user.coins < 50){
+      alert("Not enough coins! Recharge ₹200 = 1000 🪙");
+      return;
+    }
+
+    setLoading(true);
+
+    // Deduct coins first
+    const updatedUser = {...user, coins: user.coins - 50};
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    // Call AI APIs
+    try {
+      // Free Demo Mode
+      const imageRes = await fetch("/api/image/free", { method: "POST", body: JSON.stringify({prompt})});
+      const imageData = await imageRes.json();
+
+      const voiceRes = await fetch("/api/voice/free", { method: "POST", body: JSON.stringify({text: prompt})});
+      const voiceData = await voiceRes.json();
+
+      alert("✅ Image + Speaking Video ready! (Demo mode)");
+      console.log("Image URL:", imageData.url);
+      console.log("Voice URL:", voiceData.url);
+
+      // TODO: Combine image + voice into video using FFmpegKit (mobile)
+    } catch(e){
+      console.error(e);
+      alert("Error generating video");
+    }
+
+    setLoading(false);
+  };
+
+  return (
+    <div>
+      <h3>Image + Speaking Video (50 coins)</h3>
+      <input placeholder="Type prompt here" value={prompt} onChange={e=>setPrompt(e.target.value)}/>
+      <button onClick={generate} disabled={loading}>
+        {loading ? "Generating..." : "Generate"}
+      </button>
+      <p>Coins: {user.coins}</p>
+    </div>
+  );
+}// image/free
+app.post("/api/image/free", (req,res)=>{
+  res.json({url:"https://via.placeholder.com/512x512.png?text=Demo+Image"});
+});
+
+// voice/free
+app.post("/api/voice/free", (req,res)=>{
+  res.json({url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"});
+});if(user.coins >= 50){
+  user.coins -= 50;
+  // save to localStorage / Firebase
+} else {
+  alert("Not enough coins!");
+}import React, { useState } from "react";
+
+export default function VoiceToText({ user, setUser }) {
+  const [file, setFile] = useState(null);
+  const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleFile = (e) => setFile(e.target.files[0]);
+
+  const transcribe = async () => {
+    if(user.coins < 200){
+      alert("Not enough coins! Recharge ₹200 = 1000 🪙");
+      return;
+    }
+    if(!file) return alert("Select a video or audio file first!");
+
+    setLoading(true);
+
+    // Deduct coins
+    const updatedUser = {...user, coins: user.coins - 200};
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    try {
+      // Demo / Free mode
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/voice-to-text/free", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+
+      setText(data.text);
+      alert("✅ Voice → Text ready! (Demo Mode)");
+    } catch(e){
+      console.error(e);
+      alert("Error during transcription");
+    }
+
+    setLoading(false);
+  };
+
+  return (
+    <div>
+      <h3>Voice → Text (200 coins)</h3>
+      <input type="file" accept="audio/*,video/*" onChange={handleFile} />
+      <button onClick={transcribe} disabled={loading}>
+        {loading ? "Processing..." : "Transcribe"}
+      </button>
+      <p>Coins: {user.coins}</p>
+      <textarea value={text} readOnly rows={10} cols={50}></textarea>
+    </div>
+  );
+}// Demo free transcription
+app.post("/api/voice-to-text/free", async (req,res)=>{
+  // Normally you'd extract audio + run AI transcription
+  // For demo, just return placeholder
+  res.json({text: "Demo transcription text from uploaded file."});
+});// Example with OpenAI Whisper
+const transcription = await openai.audio.transcriptions.create({
+  file: uploadedFile,
+  model: "whisper-1"
+});
+res.json({text: transcription.text});function buyProMode(){
+  if(user.coins >= 0){
+    // Pro Mode payment via Razorpay
+    var options = {
+      key: "YOUR_KEY_ID",
+      amount: 10000, // ₹100 = 10000 paise
+      currency: "INR",
+      name: "3D Majer Pro Mode",
+      description: "Unlock full AI features",
+      handler: function(response){
+        user.proMode = true;           // Activate Pro Mode
+        localStorage.setItem("user", JSON.stringify(user));
+        alert("🎉 Pro Mode unlocked! You can now use real AI features.");
+      },
+      prefill: {
+        email: user.email,
+        contact: user.phone
+      },
+      theme: { color: "#00ffcc" }
+    };
+    var rzp = new Razorpay(options);
+    rzp.open();
+  } else {
+    alert("Please enter payment to unlock Pro Mode.");
+  }
+}const PLANS = {
+  10:   { coins: 50 },
+  25:   { coins: 100 },
+  190:  { coins: 700 },
+  200:  { coins: 1000 },
+  500:  { coins: 3000 },
+  600:  { coins: 7900, proDays: 7 },
+  1000: { coins: 10000, proDays: 30 },
+  1200: { coins: 12000, proDays: 37 },
+
+  100:  { proOnly: true, proDays: 30 },
+  3000: { unlimited: true, days: 30 },
+  10000:{ unlimited: true, lifetime: true }
+};function applyPlan(price) {
+  const plan = PLANS[price];
+
+  if(plan.coins){
+    user.coins += plan.coins;
+  }
+
+  if(plan.proDays){
+    user.proUntil = Date.now() + plan.proDays * 24 * 60 * 60 * 1000;
+  }
+
+  if(plan.proOnly){
+    user.proUntil = Date.now() + plan.proDays * 24 * 60 * 60 * 1000;
+  }
+
+  if(plan.unlimited){
+    user.unlimited = true;
+    user.unlimitedUntil = plan.lifetime 
+      ? "LIFETIME"
+      : Date.now() + plan.days * 24 * 60 * 60 * 1000;
+  }
+
+  saveUser(user);
+}function canUseFeature(cost){
+  if(user.unlimited) return true;
+  if(user.coins >= cost){
+    user.coins -= cost;
+    return true;
+  }
+  alert("Coins khatam 😢 Recharge karo");
+  return false;
+}users {
+  uid: {
+    gmail: "user@gmail.com",
+    gameId: "MAJER-839201",
+    coins: 1000,
+    role: "user" // or "admin"
+  }
+}function generateGameId(){
+  return "MAJER-" + Math.floor(100000 + Math.random() * 900000);
+}user.gameId = generateGameId();function sendFreeCoins(fromGameId, toGameId, coins){
+  if(fromGameId !== "ADMIN-MASTER"){
+    alert("Permission denied");
+    return;
+  }
+
+  db.collection("users")
+    .where("gameId", "==", toGameId)
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        doc.ref.update({
+          coins: firebase.firestore.FieldValue.increment(coins)
+        });
+      });
+    });
+
+  alert("Free coins sent 🎉");
+}{
+  "gameId": "ADMIN-MASTER",
+  "role": "admin",
+  "coins": 999999999
+}if(referralUsed){
+  user.coins += 100;
+  referrer.coins += 100;
+}users {
+  uid: {
+    gameId: "MAJER-839201",
+    coins: 1000,
+    role: "user",
+    referredBy: "MAJER-123456", // optional
+    referrals: [] // store referred gameIds
+  }
+}import React, { useState } from "react";
+
+export default function Referral({ user, setUser }) {
+  const [refId, setRefId] = useState("");
+
+  const applyReferral = async () => {
+    if(!refId) return alert("Enter referral Game ID");
+
+    if(user.referredBy) return alert("Already used a referral!");
+
+    // Call backend / firebase
+    const refUserSnap = await db.collection("users")
+      .where("gameId", "==", refId).get();
+
+    if(refUserSnap.empty) return alert("Invalid referral ID");
+
+    // Add coins to both
+    refUserSnap.forEach(doc => {
+      doc.ref.update({
+        coins: firebase.firestore.FieldValue.increment(250),
+        referrals: firebase.firestore.FieldValue.arrayUnion(user.gameId)
+      });
+    });
+
+    // Add coins to new user
+    const userRef = db.collection("users").doc(user.uid);
+    userRef.update({
+      coins: firebase.firestore.FieldValue.increment(250),
+      referredBy: refId
+    });
+
+    alert("🎉 Referral applied! 250 coins added to both users");
+  };
+
+  return (
+    <div>
+      <h3>Use Referral (Get 250 coins)</h3>
+      <input 
+        placeholder="Enter Game ID"
+        value={refId}
+        onChange={e=>setRefId(e.target.value)}
+      />
+      <button onClick={applyReferral}>Apply Referral</button>
+      <p>Your Coins: {user.coins}</p>
+    </div>
+  );
+}function viewReferrals(){
+  db.collection("users")
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        console.log(doc.data().gameId, doc.data().referrals);
+      });
+    });
+}const SUPPORTED_LANGUAGES = [
+  "en", "hi", "es", "fr", "zh", "ar", /* …100+ */ 
+];
+
+let userLanguage = "en"; // default
+
+function setLanguage(lang){
+  if(SUPPORTED_LANGUAGES.includes(lang)){
+    userLanguage = lang;
+    localStorage.setItem("language", lang);
+  } else {
+    alert("Language not supported");
+  }
+}// Example TTS call
+generateVoice(text, userLanguage);<select onchange="setLanguage(this.value)">
+  <option value="en">English</option>
+  <option value="hi">Hindi</option>
+  <option value="es">Spanish</option>
+  <!-- …100+ options -->
+</select>IF new_user == true
+THEN coins = 1000users
+ └── userID
+     ├── coins: 1000
+     ├── pro: false
+     ├── referral_used: falseIF Firebase user NOT exists
+ → set coins = 1000
+ → save to FirebaseIF user.coins >= required_coins
+   allow_feature()
+   user.coins = user.coins - required_coins
+ELSE
+   show("Not enough coins")
+   show_buy_option()IF coins >= 20
+ → coins = coins - 20
+ → save Firebase
+ → open AI WebView
+ELSE
+ → show "Buy Coins"IF user.pro == true
+   unlimited_features = true
+ELSE
+   use_coins()IF referral_code_used == true AND referral_used == false
+ → coins += 250
+ → referral_used = truefunction useCoins(cost){
+  if(user.coins >= cost){
+    user.coins -= cost;
+    saveCoins();
+    return true;
+  }else{
+    alert("Not enough coins");
+    return false;
+  }
+}Sketchware  → App + UI + Coins
+Firebase    → Login + Coins + Referral
+WebView     → AI Image / Video / Voice
+Chrome      → TestingIF user.coins >= 70
+ → coins = coins - 70
+ → allow_image_analysis
+ELSE
+ → show "Not enough coins"int COST = 70;
+
+if (userCoins >= COST) {
+    userCoins = userCoins - COST;
+    saveCoinsToFirebase(userCoins);
+    openImagePicker();
+} else {
+    showMessage("70 coins chahiye");
+}Intent intent = new Intent(Intent.ACTION_PICK);
+intent.setType("image/*");
+startActivityForResult(intent, 101);Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+ByteArrayOutputStream baos = new ByteArrayOutputStream();
+bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+String base64Image = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);async function analyzeImage(base64Image) {
+  const response = await fetch("/api/image-to-text", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      image: base64Image,
+      task: "describe_image"
+    })
+  });
+
+  const data = await response.json();
+  return data.text;
+}• Photo me ek ladka hai
+• Road ke paas khada hai
+• Din ka time lag raha hai
+• Mood normal lag raha haiIF user.pro == true
+   allow_human_detection
+ELSE
+   show("PRO required")if (isProUser) {
+    openImagePicker();
+} else {
+    showMessage("PRO Mode required");
+}Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+ByteArrayOutputStream baos = new ByteArrayOutputStream();
+bmp.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+String base64Image = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);async function detectHuman(base64Image) {
+  const res = await fetch("/api/human-detect", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      image: base64Image,
+      task: "human_detection_and_description"
+    })
+  });
+
+  const data = await res.json();
+  return data.result;
+}if user.coins >= 100:
+    user.coins -= 100
+    allow_video_creation()
+else:
+    show_message("Not enough coins. Buy more!")• Photo में 1 इंसान है  
+• Gender: Male (approx)  
+• Age: 20–25 years (estimate)  
+• Standing position  
+• Casual clothes पहने हुए  
+• Outdoor environmentint VIDEO_COST = 100;
+int minDuration = 1; // in minutes
+int maxDuration = 600; // 10 hours = 600 minutes
+
+if(userCoins >= VIDEO_COST){
+    userCoins -= VIDEO_COST;
+    saveCoinsToFirebase(userCoins);
+    
+    // Select duration
+    int selectedDuration = getUserSelectedDuration();
+    if(selectedDuration < minDuration || selectedDuration > maxDuration){
+        showMessage("Duration must be 1 min – 10 hrs");
+    } else {/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js
+        openVideoAIWebView(selectedDuration);
+    }
+} else {
+    showMessage("100 coins needed to create video");
+}int VIDEO_COST = 100;
+int minDuration = 1; // in minutes
+int maxDuration = 600; // 10 hours = 600 minutes
+
+if(userCoins >= VIDEO_COST){
+    userCoins -= VIDEO_COST;
+    saveCoi/pwa-app
+ ├─ index.html
+ ├─ manifest.json
+ └─ service-worker.js
